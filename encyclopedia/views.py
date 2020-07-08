@@ -13,4 +13,5 @@ def entry(request, entry):
             "entry": util.get_entry(entry),
             "entry_title": entry.capitalize()
         })
-
+    else:
+        return render(request, "encyclopedia/error.html")
