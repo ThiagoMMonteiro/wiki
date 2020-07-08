@@ -1,0 +1,17 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ entry_title }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ entry_title }}</h1>
+
+    <h2>{{ entry }}</h2>
+    <!-- <ul>
+        {% for entry in entries %}
+            <li>{{ entry }}</li>
+        {% endfor %}
+    </ul> -->
+
+{% endblock %}
