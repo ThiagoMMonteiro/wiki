@@ -54,3 +54,14 @@ def newentry(request):
             util.save_entry(title, content)
             return HttpResponseRedirect(reverse("encyclopedia:entry", args=[title]))
     return render(request, "encyclopedia/newentry.html")
+
+def editentry(request, entry_title):
+    if request.method == "POST":
+        content = request.POST.get('content')
+        util.save_entry(entry_title, content)
+        return HttpResponseRedirect(reverse("encyclopedia:entry", args=[entry_title]))
+    else:
+        return render(request, "encyclopedia/editentry.html", {
+            "content": util.get_entry(entry_title),
+            "entry_title": entry_title
+        })
