@@ -46,6 +46,11 @@ def newentry(request):
     if request.method == "POST":
         title = request.POST.get('title')
         content = request.POST.get('content')
-        util.save_entry(title, content)
-        return HttpResponseRedirect(reverse("encyclopedia:entry", args=[title]))
+        if util.get_entry(title):
+            return render(request, "encyclopedia/error.html",{
+                    "message": "This page already exists!"
+                })
+        else:
+            util.save_entry(title, content)
+            return HttpResponseRedirect(reverse("encyclopedia:entry", args=[title]))
     return render(request, "encyclopedia/newentry.html")
