@@ -42,3 +42,10 @@ def search(request):
         else:
             return HttpResponseRedirect("encyclopedia:index")
 
+def newentry(request):
+    if request.method == "POST":
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        util.save_entry(title, content)
+        return HttpResponseRedirect(reverse("encyclopedia:entry", args=[title]))
+    return render(request, "encyclopedia/newentry.html")
