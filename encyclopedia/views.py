@@ -1,3 +1,4 @@
+import random
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -65,3 +66,8 @@ def editentry(request, entry_title):
             "content": util.get_entry(entry_title),
             "entry_title": entry_title
         })
+
+def randompage(request):
+    entries = util.list_entries()
+    random_entry = random.choice(entries)
+    return HttpResponseRedirect(reverse("encyclopedia:entry", args=[random_entry]))
