@@ -5,9 +5,8 @@
 {% endblock %}
 
 {% block body %}
-    <h1>{{ entry_title }}</h1>
 
-    <h2>{{ entry }}</h2>
+    {{ entry|safe }}
 
     <a class="btn btn-light" href="{% url 'encyclopedia:editentry' entry_title=entry_title %}" role="button">Edit this entry</a>
 {% endblock %}

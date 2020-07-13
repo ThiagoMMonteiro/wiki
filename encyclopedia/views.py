@@ -1,3 +1,4 @@
+import markdown2
 import random
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -13,7 +14,7 @@ def index(request):
 def entry(request, entry):
     if util.get_entry(entry):
         return render(request, "encyclopedia/entry.html", {
-            "entry": util.get_entry(entry),
+            "entry": markdown2.markdown(util.get_entry(entry)),
             "entry_title": entry.capitalize()
         })
     else:
